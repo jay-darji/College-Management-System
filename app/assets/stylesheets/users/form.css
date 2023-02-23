@@ -1,0 +1,50 @@
+body.Form{
+    margin: 20px;
+    padding: 5px 10px;
+    border-width: 20px;
+    border-style: inherit;
+    border-color: #2E2F30;
+    border-radius: 5px;
+
+
+    background-color: #c9e5ff;
+    margin-block: inherit;
+}
+
+h1.title{
+    padding: 10px;
+    font-family: "Chalkboard SE";
+    color: darkmagenta;
+    backdrop-filter: blur(100px);
+    backface-visibility: visible;
+    background-color: peachpuff;
+    border-radius: 10px;
+    text-align: center;
+}
+
+input[type=text], input[type=password], input[type=email]{
+    width: 30%;
+    padding: 5px 8px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border-style: groove;
+    border-radius: 5px;
+}
+
+div.Entry{
+    margin: 10px;
+    text-align: left;
+    padding: 10px;
+
+
+}
+
+div.BackLink{
+    padding: inherit;
+    font-size: x-large;
+}
+
+label{
+    font-family: sans-serif;
+}
+

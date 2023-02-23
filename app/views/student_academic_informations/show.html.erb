@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Home Page</title>
+  <link rel="stylesheet" href="/app/assets/stylesheets/users/student.css">
+</head>
+<body class="Form">
+
+
+<h2 class="title-h2-2"> Student Information:</h2>
+<!--<p style="color: green"><%#= notice %></p>-->
+
+<div class="profs">
+  <h3>College Information</h3>
+<%= render "showUser", academicInfo: @academicInfo %>
+</div>
+<!--
+<div class="profs">
+  <h3>Address Information:</h3>
+  <%#= render "addresses/showAddress",%>
+</div>
+<div class="profs">
+  <h3>Parental Information:</h3>
+  <%#= render "parental_informations/parentInfo", academicInfo: @academicInfo %>
+</div>
+-->
+
+<div class="button">
+  <ul>
+    <li><%= link_to "Edit college information", edit_student_academic_information_path(@academicInfo) %> </li>
+    <li><%= link_to "Show student information", user_path(@academicInfo.user) %> </li>
+    <li><%= link_to "Back to users", student_academic_informations_path %> </li>
+  </ul>
+</div>
+
+</body>
+</html>

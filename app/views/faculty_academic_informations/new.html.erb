@@ -1,0 +1,20 @@
+<link rel="stylesheet" href="/app/assets/stylesheets/users/form.css">
+
+<!--
+<h1 class="title">
+
+  Hey <%#= @current_user.firstName %>..!
+</h1>
+-->
+
+<h2> Enter the course details you will be teaching: </h2>
+
+
+<%= render "facultyInfoForm", academicInfo: @FacultyAcademicInfo, profs: @Profs %>
+
+<!--courseName: @courseName-->
+
+<!--
+<%# if params[:courseId] != nil %>
+  <%#= render "courses/course", course: @courses[:courseId] %>
+<%# end %>-->

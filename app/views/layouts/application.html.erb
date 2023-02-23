@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+<!--    <title>UserLogin</title>-->
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+  </head>
+
+  <body>
+
+<!--  <div class="square" data-mdb-toggle="animation" data-mdb-animation-start="onRdirection" data-mdb-animation="tada" data-mdb-animation-reset="true" style="animation-duration: 500ms;">-->
+<!--    tada-->
+<!--  </div>-->
+    <div class="text-danger font-weight-bold" data-mdb-toggle="animation" data-mdb-animation-reset="true" data-mdb-animation="slide-out-right" style="font-size: xx-large">
+      <%= flash[:error] %>
+      <%= flash[:alert] %>
+    </div>
+
+    <div class="text-success font-weight-bold" style="font-size: xx-large">
+      <%= flash.now[:notice] %>
+    </div>
+
+    <%= yield %>
+  </body>
+</html>

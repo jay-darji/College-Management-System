@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>College Course Information</title>
+</head>
+
+<body class="Form">
+
+<%= form_with model: academicInfo  do |form| %>
+  <% if academicInfo.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(academicInfo.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+        <% academicInfo.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div class="Entry">
+    <%= form.label :coursId,"Course Name", style: "display: block" %>
+    <%= form.text_field :courseId , disabled: true %>
+  </div>
+
+
+  <div class="Entry">
+    <%= form.label :facultyId, style: "display: block" %>
+    <div class="dropdown btn btn-outline-secondary btn-lg " style="font-size: large; color: black" >
+      <%= form.select :facultyId, profs %>
+    </div>
+  </div>
+
+
+  <!--
+  This is for when prof -> course
+
+  <div class="Entry">
+    <%#= form.label :coursId,"Course", style: "display: block" %>
+    <div class="dropdown btn btn-outline-secondary btn-lg " style="font-size: large; color: black" >
+      <%#= form.select :courseId, courseName  %>
+    </div>
+  </div>
+
+  <%# if form[:coursId] != nil %>
+    <%#= render "courses/course", course: @courses.select {|c| c.courseName==:courseId} %>
+  <%# end%>
+
+  <div class="Entry">
+    <%#= form.label :facultyId, style: "display: block" %>
+    <%#= form.text_field :facultyId, disabled: true %>
+  </div>
+-->
+
+
+  <% if @current_user.email == "admin@gmail.com" %>
+
+    <!--<div class="Entry">
+      <%#= form.label :semester, style: "display: block" %>
+
+
+      <div class="dropdown btn btn-outline-secondary btn-lg " style="font-size: large; color: black" >
+        <%#= form.select :semester, [1,2,3,4,5,6,7,8] %>
+      </div>
+
+      <%#= form.text_field :currentSemester %>
+    </div>-->
+
+  <%end %>
+
+
+  <div>
+    <%= form.submit  "Submit College Information", :class => "btn btn-success" %>
+  </div>
+
+<%end %>
+
+</body>
+</html>

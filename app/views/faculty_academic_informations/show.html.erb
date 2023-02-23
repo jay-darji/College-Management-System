@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Home Page</title>
+  <link rel="stylesheet" href="/app/assets/stylesheets/users/student.css">
+</head>
+<body class="user">
+
+<!--<p style="color: green"><%#= notice %></p>-->
+
+
+<%= render "showFaculty", academicInfo: @FacultyAcademicInfo %>
+
+<div class="button">
+  <ul>
+    <li><%= link_to "Edit college information", edit_faculty_academic_information_path(@FacultyAcademicInfo) %> </li>
+    <li><%= link_to "Back to all professor", faculty_academic_informations_path %> </li>
+  </ul>
+</div>
+
+</body>
+</html>

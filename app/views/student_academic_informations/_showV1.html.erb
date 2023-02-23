@@ -1,0 +1,35 @@
+<link rel="stylesheet" href="/app/assets/stylesheets/users/user.css">
+
+<div>
+
+  <p class="Entry">
+    <strong>Student Id:</strong>
+    <label class="type"><%= academicInfo.studentId %> </label>
+  </p>
+
+  <p class="Entry">
+    <strong>Degree:</strong>
+    <label class="type"><%= academicInfo.batch %> </label>
+  </p>
+
+  <p class="Entry">
+    <strong>Department:</strong>
+    <label class="type"><%= academicInfo.department %></label>
+  </p>
+
+  <% if academicInfo.currentSemester != nil %>
+    <p class="Entry">
+      <strong> Current Semester:</strong>
+      <label class="type"><%= academicInfo.currentSemester %> </label>
+    </p>
+  <%end %>
+
+  <% if academicInfo.cpi != nil %>
+    <p class="Entry">
+      <strong>CPI :</strong>
+      <label class="type"><%= academicInfo.cpi %> </label>
+    </p>
+  <%end %>
+
+
+</div>

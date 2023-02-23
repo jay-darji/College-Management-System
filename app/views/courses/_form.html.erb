@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, course-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Welcome to Sign up page</title>
+  <link rel="stylesheet" href="/app/assets/stylesheets/users/form.css">
+</head>
+<body class="Form">
+
+<%= form_with model: course  do |form| %>
+  <% if course.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(course.errors.count, "error") %> prohibited this course from being saved:</h2>
+
+      <ul>
+        <% course.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="Entry">
+    <%= form.label "Course ID", style: "display: block" %>
+    <%= form.text_field :courseId , required: true %>
+  </div>
+
+  <div class="Entry">
+    <%= form.label "Course Name", style: "display: block" %>
+    <%= form.text_field :courseName, required: true %>
+  </div>
+
+
+  <div class="Entry" >
+    <%= form.label "Batch Name", style: "display: block; font-size:larger" %>
+    <%= form.radio_button :batch, "B.Tech",onchange: "this.form.submit();", required: true %>
+    <%= form.label :batch ,"B.Tech" %>
+    <br>
+    <%= form.radio_button :batch, "M.Tech", onchange: "this.form.submit();" %>
+    <%= form.label :batch ,"M.Tech" %>
+    <br>
+    <%= form.radio_button :batch, "M.Sc", onchange: "this.form.submit();" %>
+    <%= form.label :batch ,"M.Sc" %>
+
+  </div>
+
+  <% if course.batch != nil %>
+    <div class="Entry">
+      <%= form.label :department, style: "display: block; font-size:larger" %>
+      <%#= form.text_field :department %>
+      <% if course.batch == "B.Tech" %>
+        <%= form.radio_button :department, "IT", required: true %>
+        <%= form.label :department , "IT Engineering" %>
+        <br>
+        <%= form.radio_button :department, "CE" %>
+        <%= form.label :department , "Computer Engineering" %>
+        <br>
+        <%= form.radio_button :department, "CVE" %>
+        <%= form.label :department , "Civil Engineering" %>
+        <br>
+        <%= form.radio_button :department, "EE" %>
+        <%= form.label :department , "Electrical Engineering" %>
+        <br>
+        <%= form.radio_button :department, "ECE" %>
+        <%= form.label :department , "Electrical & Communication Engineering" %>
+        <br>
+        <%= form.radio_button :department, "ME" %>
+        <%= form.label :department , "Mechanical Engineering" %>
+
+      <%elsif course.batch == "M.Tech"%>
+        <%= form.radio_button :department, "IT" , required: true%>
+        <%= form.label :department , "IT Engineering" %>
+        <br>
+        <%= form.radio_button :department, "CE" %>
+        <%= form.label :department , "Computer Engineering" %>
+        <br>
+        <%= form.radio_button :department, "ECE" %>
+        <%= form.label :department , "Electrical & Communication Engineering" %>
+
+      <%elsif course.batch == "M.Sc"%>
+        <%= form.radio_button :department, "Mathematics", required: true %>
+        <%= form.label :department , "M.Sc in Mathematics" %>
+        <br>
+        <%= form.radio_button :department, "Physics" %>
+        <%= form.label :department , "M.Sc in Physics" %>
+        <br>
+        <%= form.radio_button :department, "Computer Science" %>
+        <%= form.label :department , "M.Sc in Computer Science" %>
+        <br>
+        <%= form.radio_button :department, "Electronics" %>
+        <%= form.label :department , "M.Sc in Electronics" %>
+        <br>
+        <%= form.radio_button :department, "Environmental Science" %>
+        <%= form.label :department , "M.Sc in Environmental Science" %>
+        <br>
+      <%end %>
+    </div>
+  <%end %>
+
+
+  <% if course.batch != nil %>
+    <div class="Entry">
+
+      <%= form.label "Which semester it will teach?", style: "display: block; font-size:larger"  %>
+      <%# if course.semester != nil %>
+  <!--      <strong style="color: darkorange">Current teaching semester:</strong>-->
+        <%#= course.semester %>
+      <%#end %>
+  <!--    <br>-->
+      <%#= form.check_box :semester,{multiple: true, required: true, :checked=> true, oninvalid: "this.setCustomValidity('Please select at least one semester.')" }, $teachingSemester[0], false %>
+      <%#= form.label :semester ,$teachingSemester[0] %>
+<!--      <br>-->
+      <% for i in $teachingSemester %>
+        <% if course.semester == nil %>
+          <%= form.check_box :semester,{multiple: true}, i, false %>
+        <%elsif course.semester.include? i.to_s%>
+          <%= form.check_box :semester,{multiple: true, :checked => true}, i, false %>
+        <%else %>
+          <%= form.check_box :semester,{multiple: true}, i, false %>
+        <%end %>
+        <%= form.label :semester ,"#{i}" %>
+        <br>
+      <%end %>
+
+    </div>
+  <%end %>
+
+  <%# if course.batch != nil %>
+<!--    <div class="Entry">-->
+      <%#= form.label "Which Professor will teach this course?", style: "display: block; font-size:larger"  %>
+<!--      <div class="dropdown btn btn-outline-secondary btn-lg " style="font-size: large; color: black" >-->
+        <%#= form.select :facultyId, @profs[0] %>
+<!--      </div>-->
+<!--    </div>-->
+  <%#end %>
+
+  <div class="Entry">
+    <%= form.submit%>
+  </div>
+<%end %>
+
+</body>
+</html>

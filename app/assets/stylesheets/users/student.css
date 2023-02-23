@@ -1,0 +1,69 @@
+body.student{
+    margin: 20px;
+    padding: 15px 20px 0px 30px;
+    border-width: 20px;
+    border-style: inherit;
+    border-color: #2E2F30;
+    border-radius: 5px;
+
+
+    background-color: #c9e5ff;
+    margin-block: inherit;
+}
+
+h1.title{
+    padding: 10px;
+    margin: 10px;
+    font-family: "Chalkboard SE";
+    color: darkmagenta;
+    backdrop-filter: blur(100px);
+    backface-visibility: visible;
+    background-color: peachpuff;
+    border-radius: 10px;
+}
+
+input[type=text]{
+    width: 30%;
+    padding: 5px 8px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border-style: groove;
+    border-radius: 5px;
+}
+
+p.Entry{
+    margin: 10px;
+    display: flow-root;
+    text-align: left;
+    padding: 10px;
+
+
+}
+
+div.button{
+    margin: 10px;
+    font-size: x-large;
+}
+
+strong{
+    font-family: sans-serif;
+    padding-bottom: 0px;
+}
+
+label.type{
+    font-family: sans-serif;
+    padding: 2px 5px;
+    box-sizing: content-box;
+    border-style: groove;
+    border-radius: 5px;
+    box-decoration-break: clone;
+    background-color: #F7F7F7;
+}
+
+li.sign-out{
+    color: #B00100;
+    font-size: larger;
+    margin-top: 10px;
+    box-sizing: content-box;
+    border-radius: 10px;
+}

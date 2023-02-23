@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Parent Information</title>
+  <link rel="stylesheet" href="/app/assets/stylesheets/users/form.css">
+</head>
+<body class="Form">
+
+  <%= form_with model: parentInfo do |form| %>
+  <%= puts "parentInfo-----",parentInfo.errors.any? %>
+    <% if parentInfo.errors.any? %>
+      <div style="color: red">
+        <h2><%= pluralize(parentInfo.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+        <ul>
+          <% parentInfo.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="Entry">
+      <%= form.label :fatherName, style: "display: block" %>
+      <%= form.text_field :fatherName, required: true%>
+    </div>
+
+    <div class="Entry">
+      <%= form.label :motherName, style: "display: block" %>
+      <%= form.text_field :motherName, required: true%>
+    </div>
+
+    <div class="Entry">
+      <%= form.label :fatherMobileNo, style: "display: block" %>
+      <%= form.telephone_field :fatherMobileNo, required: true%>
+    </div>
+
+    <div class="Entry">
+      <%= form.label :motherMobileNo, style: "display: block" %>
+      <%= form.telephone_field :motherMobileNo, validation: true %>
+    </div>
+
+    <div class="Entry">
+      <%= form.submit "Submit"%>
+    </div>
+  <%end %>
+
+</body>
+</html>

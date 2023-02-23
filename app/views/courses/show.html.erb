@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>All available Courses</title>
+  <link rel="stylesheet" href="/app/assets/stylesheets/users/user.css">
+</head>
+<body class="course">
+
+
+
+<h1 class="title">
+  Course Details..!
+</h1>
+
+<%= render "course", course: @course %>
+
+
+<div class="button">
+  <ul>
+    <li><%= link_to "Edit this course", edit_course_path(@course) %> </li>
+    <li><%= link_to "Back to courses", courses_path %> </li>
+    <li><%= link_to "Destroy this course", course_path(@course), data:{
+      turbo_method: :delete,
+      turbo_confirm: 'Are you sure?',
+      turbo_disable_with: 'Processing....'
+    } %>
+    </li>
+  </ul>
+</div>
+
+</body>
+</html>
+
+

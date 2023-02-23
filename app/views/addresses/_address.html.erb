@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Address Details</title>
+  <link rel="stylesheet" href="/app/assets/stylesheets/users/form.css">
+</head>
+<body class="Form">
+
+<%= form_with model: address do |form| %>
+  <%= puts "address-----",address.errors.any? %>
+  <% if address.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(address.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+        <% address.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="Entry">
+  <%= form.label "House No.", style: "display: block" %>
+  <%= form.text_field :houseNo , required: true %>
+  </div>
+
+  <div class="Entry">
+    <%= form.label :"Society/Appartment Name", style: "display: block" %>
+    <%= form.text_field :nameOfSocietyOrAppartment, required: true %>
+  </div>
+
+  <div class="Entry">
+    <%= form.label :landmark, style: "display: block" %>
+    <%= form.text_field :landmark , required: true%>
+  </div>
+
+  <div class="Entry">
+    <%= form.label :city, style: "display: block" %>
+    <%= form.text_field :city, required: true %>
+  </div>
+
+  <div class="Entry">
+    <%= form.label :district, style: "display: block" %>
+    <%= form.text_field :district , required: true%>
+  </div>
+
+  <div class="Entry">
+    <%= form.label :state, style: "display: block" %>
+    <%= form.text_field :state , required: true %>
+  </div>
+
+  <div class="Entry">
+    <%= form.label :nation, style: "display: block" %>
+    <%= form.text_field :nation , required: true%>
+  </div>
+
+  <div class="Entry">
+    <%= form.label :"Postal Code", style: "display: block" %>
+    <%= form.text_field :postalCode , required: true %>
+  </div>
+
+
+
+  <div class="Entry">
+    <%= form.submit "Submit"%>
+  </div>
+
+<% end %>
+
+</body>
+</html>

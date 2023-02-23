@@ -1,0 +1,10 @@
+<link rel="stylesheet" href="/app/assets/stylesheets/users/form.css">
+<h1 class="title">
+
+  Hey <%= @current_user.firstName %>..!
+  <h2> Enter the college details: </h2>
+</h1>
+
+
+<%= render "studentCollegeInfo", academicInfo: @academicInfo %>
+

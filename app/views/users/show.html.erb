@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Home Page</title>
+  <link rel="icon" href="/app/assets/images/house-door-fill.svg">
+  <link rel="stylesheet" href="/app/assets/stylesheets/users/student.css">
+</head>
+<body class="Form" style="margin: 0px 5px">
+
+<!-- ########################################### -->
+<!--From this onwards is for navigation/title bar of home page-->
+
+<h1 class="title" style=" width: 100% ">
+  <div class="row" style="align-items: center">
+    <div class="col-sm-4" style="text-align: left">
+      <a href="#" style="display: flex">
+        <%= link_to  image_tag('house-door-fill.svg', width: 45), user_path(@current_user.id) %>
+      </a>
+    </div>
+    <div class="col-sm-4">
+       Welcome
+        <%if @current_user.role == "Professor"%>
+          Professor <%= @user.firstName %> ...!
+        <% elsif @current_user.email == "admin@gmail.com" %>
+          Dean ...!
+        <%else %>
+          <%= @user.firstName %> ...!
+        <%end %>
+    </div>
+    <div class="col-sm-4 " style="text-align: right">
+      <a href="#" style="display: flex">
+        <div class="col ">
+          <div class="row ">
+            <%= link_to image_tag('box-arrow-right.svg', width: 45 ,alt: "logout"), session_path(@user.id), data:{
+              turbo_method: :delete,
+              turbo_confirm: 'Sure want to logout?',
+              turbo_disable_with: 'Processing....'
+            } %>
+          </div>
+          <div class="row ">
+            <div style="color: black; font-family: sans-serif; font-size: large; display: inline ">Log-out</div>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</h1>
+
+<!-- ########################################### -->
+<!--From this onwards part is for admin, when admin see student information-->
+
+
+<% if @user.role== "Student" && @current_user.email == "admin@gmail.com"%>
+  <h2 class="title-h2-2">
+    <div>
+      Information of Student:- <%= @user.firstName+" "+@user.LastName %>
+    </div>
+  </h2>
+<%end %>
+
+<!-- ########################################### -->
+<!--From this onwards part show General,address,parental information of User -->
+
+<div class="profs" style="width: 100%;flex-wrap: nowrap">
+  <div class="row row-col-12" style="margin-left: 5px;">
+    <div class="col-3">
+      <h2 style="color: black;"> General Information</h2>
+      <div class="profs" style="font-size: larger">
+        <%= render "user", user: @user %>
+
+      </div>
+    </div>
+
+    <div class="col-3">
+      <% if @address != nil %>
+        <h2 style="color: black;"> Address Information</h2>
+        <div class="profs">
+          <%= render "addresses/showAddress", address: @address %>
+        </div>
+      <%end %>
+    </div>
+    <div class="col-3">
+      <% if @parentInfo != nil %>
+        <h2 style="color: black;"> Parents Information</h2>
+        <div class="profs">
+          <%= render "parental_informations/showParentInfo", parentInfo: @parentInfo %>
+        </div>
+      <%end %>
+    </div>
+
+    <div class="col-3">
+
+    </div>
+  </div>
+</div>
+
+<!-- ########################################### -->
+<!--From this onwards part show college/academic info of Student/Professor-->
+
+<!-- --------   If condition for Student ------- -->
+<% if @current_user.role == "Student" %>
+  <h2>College details</h2>
+  <div class="profs">
+    <% if @academicInfo != nil %>
+      <%= render "student_academic_informations/showUser", academicInfo: @academicInfo %>
+      <% if @academicInfo.currentSemester!=nil %>
+        <%= render "courses/studentCourse" , courses: @courses %>
+      <% else %>
+        <strong class="notice">Once your information assigned by college, you can see your courses.</strong>
+      <%end %>
+    <% end %>
+  </div>
+<!-- --------   If condition for Professor ------- -->
+<% elsif @current_user.role == "Professor" %>
+  <h2> Your Courses: </h2>
+  <div class="profs">
+    <% if !(@courses.nil?) %>
+        <%= render "courses/studentCourse" , courses: @courses %>
+    <% else %>
+        <strong class="notice"> No courses has been assigned to you. Once assigned it will be shown here.</strong>
+    <%end %>
+  </div>
+
+<%end %>
+
+<!-- ########################################### -->
+<!--From this onwards part represent all links regarding add/update info of general/address/parental-->
+<!--Also has link to change password and sign-out. Also user can delete it's account.-->
+
+<div class="button">
+  <ul>
+    <li><%= link_to "Edit your Information", edit_user_path(@user,params:{what: "information"}) %> </li>
+    <li><%= link_to "Change your password", edit_user_path(@user,params:{what: "password"}) %> </li>
+    <%if @current_user_role == "Student" %>
+      <li><%= link_to "Edit College information", new_student_academic_information_path %></li>
+    <%end %>
+  <%#= button_to "Destroy this user", user_path(@user), method: :delete %>
+    <li><%= link_to "Delete your account", user_path(@user), data:{
+                                                                turbo_method: :delete,
+                                                                turbo_confirm: 'Are you sure?',
+                                                                turbo_disable_with: 'Processing....'
+                                                                } %>
+    </li>
+    <li> <%= session[:current_user_id] %> </li>
+    <li> <%= session[:current_user_role] %> </li>
+    <%if @parentInfo == nil %>
+      <li> <%=  link_to "Enter Parental Information", new_parental_information_path %> </li>
+    <%else%>
+      <li> <%=  link_to "Update Parental Information", edit_parental_information_path(@user.parental_information) %> </li>
+    <%end %>
+
+    <%if @address == nil %>
+      <li> <%=  link_to "Enter Address Information", new_address_path %> </li>
+    <%else%>
+      <li> <%=  link_to "Update Address Information", edit_address_path(@user.address) %> </li>
+    <%end %>
+
+    <%if @user.email == "admin@gmail.com" %>
+      <li> <%=  link_to "All courses", courses_path %> </li>
+      <li> <%=  link_to "All students", student_academic_informations_path %> </li>
+      <li><%= link_to "All the professor", faculty_academic_informations_path %> </li>
+    <%end %>
+
+    <% if @current_user.role == @user.role %>
+      <li> <%=  link_to "Sign Out", session_path(@user.id), data:{
+                                                                  turbo_method: :delete,
+                                                                  turbo_confirm: 'Sure want to logout?',
+                                                                  turbo_disable_with: 'Processing....'
+                                                                } %>
+      </li>
+    <%end %>
+  </ul>
+</div>
+
+</body>
+</html>
+
+

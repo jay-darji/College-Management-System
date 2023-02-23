@@ -1,0 +1,27 @@
+<h1 class="title" style=" width: 100% ">
+  <div class="row">
+    <div class="col-sm-4" style="text-align: left">
+      <a href="#" style="display: flex" >
+        <%= link_to  image_tag('house-door-fill.svg', width: 45), user_path(@current_user.id) %>
+      </a>
+    </div>
+    <div class="col-sm-4">
+      <p style=" text-align: center;"> All the Students</p>
+    </div>
+  </div>
+</h1>
+
+<div class="container-0">
+  <div class="row row-cols-6 " style="margin: 5px 5px; flex-direction: row; justify-content: start;align-content: stretch; width: 100%}">
+    <% @academicInfos.each do |student| %>
+      <div class="profs col" style="flex-direction: column;margin: 0px; padding: 5px">
+
+        <%= render "showV1", academicInfo: student %>
+        <strong style="color: dodgerblue; font-size: large; text-align: start">
+            <u><%= link_to "Show this student",  student %></u>
+        </strong>
+
+      </div>
+    <% end %>
+  </div>
+</div>

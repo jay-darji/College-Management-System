@@ -1,0 +1,26 @@
+<link rel="stylesheet" href="/app/assets/stylesheets/users/student.css">
+
+<div>
+
+  <div class="documentation-section-title strong Entry" style="font-size: large; color: blue">
+    <strong>Your Courses for this semester:</strong>
+  </div>
+
+  <% for subject in courses %>
+
+
+
+    <p class="Entry">
+
+    <strong>Course Id:</strong>
+    <label class="type"><%= subject.courseId %></label>
+
+    <strong>Course Name:</strong>
+    <label class="type"><%= subject.courseName %></label>
+
+    </p>
+
+  <%end %>
+
+
+</div>

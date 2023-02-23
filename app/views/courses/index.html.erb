@@ -1,0 +1,80 @@
+<link rel="stylesheet" href="/app/assets/stylesheets/users/form.css">
+
+
+<!--
+<div class="container ms-0">
+  <div class="row">
+      <div class="col-1 col-sm-1.5 btn-light">
+        <a href="#" style="display: flex" >
+
+          <%#= link_to  image_tag('icons8-back-arrow-64.png', width: 45), user_path(@current_user.id) %>
+
+        </a>
+      </div>
+      <div class="button col-2 col-sm-6" style="font-family: sans-serif">
+        <u><b><%#= link_to "Add New course", new_course_url %></b></u>
+      </div>
+  </div>
+</div>
+-->
+
+<h1 class="title" style=" width: 100% ">
+  <div class="row">
+    <div class="col-sm-4" style="text-align: start">
+      <a href="#" style="display: flex; text-align: left">
+        <%= link_to  image_tag('house-door-fill.svg', width: 45), user_path(@current_user.id) %>
+      </a>
+      <u style="font-family: sans-serif; font-size: x-large"><b><%= link_to "Add New course", new_course_url %></b></u>
+    </div>
+
+    <div class="col-sm-4">
+      <p style=" text-align: center;"> All available Courses</p>
+    </div>
+
+    <div class="col-sm-4" style="text-align: start">
+      <a href="#" style="display: flex; text-align: left">
+        <%= link_to  image_tag('house-door-fill.svg', width: 45), user_path(@current_user.id) %>
+      </a>
+      <u style="font-family: sans-serif; font-size: x-large"><b><%= link_to "Add New course", new_course_url %></b></u>
+    </div>
+
+  </div>
+
+</h1>
+
+
+
+<!--<h1 class="title"></h1>-->
+
+
+<div class="container-0">
+  <div class="row row-cols-5 " style="margin: 5px 5px; flex-direction: row; justify-content: start;align-content: stretch; width: 100%}">
+    <% @courses.each do |course| %>
+      <div class="profs col " style="margin: 0px; padding: 5px" >
+        <%= render course, course: course %>
+        <p style="font-size: large">
+          <u><%= link_to "Show this course", course %></u>
+          <strong style="color: dodgerblue; font-size: large; padding-left: 10px ">
+            <%# has = FacultyAcademicInformation.find_by(courseId: course.id) %>
+            <% faculties = course.faculty_academic_information %>
+            <%# puts "this is has-------------- #{}",has %>
+            <% faculties.each do |has| %>
+              <% if has.nil? %>
+                <u><%= link_to  "Assign this course to a professor", new_faculty_academic_information_url(params:{courseID: course.id})  %></u>
+              <%else %>
+                <br>
+                <u>
+                  <% user = has.user %>
+                  <%=  "This course has assigned to a professor #{has.facultyId} - #{user.firstName} #{user.LastName}"  %>
+                  <br>
+                  <%= link_to  "Assign course to another professor", edit_faculty_academic_information_path(has.id)  %>
+                </u>
+              <%end %>
+            <%end %>
+          </strong>
+        </p>
+      </div>
+    <% end %>
+  </div>
+</div>
+

@@ -1,0 +1,36 @@
+<link rel="stylesheet" href="/app/assets/stylesheets/users/user.css">
+
+<div>
+
+  <p class="Entry">
+    <strong>Faculty Id:</strong>
+    <label class="type"><%= userInfo.id %> </label>
+  </p>
+
+  <p class="Entry">
+    <strong>Name:</strong>
+    <label class="type"><%= userInfo.firstName.capitalize() + " " +userInfo.LastName.capitalize() %></label>
+  </p>
+
+
+  <% if academicInfo.empty? %>
+    <p class="Entry" style="font-size: larger; color: red; margin: 1px">
+    <strong > No courses has been assigned.</strong>
+    </p>
+  <%else %>
+      <div class="documentation-section-title strong Entry" style="font-size: large; color: #1b83ff ">
+        <strong>All teaching Courses :</strong>
+      </div>
+      <label class="type" id=columns>
+        <ul style=" list-style-image: url(/app/assets/images/box-arrow-right.svg); list-style-type:decimal; ">
+          <% academicInfo.each do |each_course| %>
+            <li>
+              <%= render "courses/course", course: each_course.course %>
+            </li>
+          <% end %>
+        </ul>
+      </label>
+  <%end %>
+
+
+</div>

@@ -1,0 +1,26 @@
+
+<div>
+
+  <p class="Entry">
+    <strong>Father Name:</strong>
+    <label class="type"><%= parentInfo.fatherName %> </label>
+  </p>
+
+  <p class="Entry">
+    <strong>Mother Name:</strong>
+    <label class="type"><%= parentInfo.motherName %> </label>
+  </p>
+
+  <p class="Entry">
+    <strong>Father Mobile No.:</strong>
+    <label class="type"><%= parentInfo.fatherMobileNo %> </label>
+  </p>
+
+  <p class="Entry">
+    <strong>Mother Mobile No.:</strong>
+    <% if parentInfo.motherMobileNo!=nil %>
+      <label class="type"><%= parentInfo.motherMobileNo %> </label>
+    <%end %>
+  </p>
+
+</div>

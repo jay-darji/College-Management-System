@@ -1,0 +1,50 @@
+<h1>Please Edit Your Details</h1>
+
+<%= form_with model: user  do |form| %>
+  <% if user.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+        <% user.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="Entry">
+    <%= form.label :firstName, style: "display: block" %>
+    <%= form.text_field :firstName %>
+  </div>
+
+  <div class="Entry">
+    <%= form.label :middleName, style: "display: block" %>
+    <%= form.text_field :middleName %>
+  </div>
+
+  <div class="Entry">
+    <%= form.label :LastName, style: "display: block" %>
+    <%= form.text_field :LastName %>
+  </div>
+
+  <div class="Entry">
+    <%= form.label :mobileNo, style: "display: block" %>
+    <%= form.text_field :mobileNo, validate: true %>
+  </div>
+
+  <!--<div class="Entry">
+          <%#= form.label :userId, style: "display: block" %>
+  <%#= form.text_field :userId %>
+        </div>-->
+
+  <div class="Entry">
+    <%= form.label :email, style: "display: block" %>
+    <%= form.text_field :email %>
+  </div>
+
+  <div class="Entry">
+    <%= form.submit "Update Your Information" %>
+  </div>
+
+<%end %>

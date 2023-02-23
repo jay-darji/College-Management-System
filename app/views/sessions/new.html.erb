@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Sign In</title>
+</head>
+<body class="Sign_in">
+
+<div class="container-fluid">
+  <div class="col-md-4"></div>
+  <div class="col-md-4 ">
+    <h1> Sign In Portal </h1>
+
+
+
+    <%= form_with url: sign_in_url, method: :post do |form| %>
+      <%# if @user.errors.any? %>
+      <!--    <div style="color: red">-->
+      <!--      <h2><%#= pluralize(@user.errors.count, "error") %> Pleases try again with valid credentials  :</h2>-->
+
+      <!--      <ul>-->
+      <%# @user.errors.each do |error| %>
+      <!--          <li><%#= error.full_message %></li>-->
+      <%# end %>
+      <!--      </ul>-->
+      <!--    </div>-->
+      <%# end %>
+
+
+
+      <div class="form-floating mb-4 ml-3 mr-3 submit" >
+        <%= form.text_field :email, class: "form-control submit" , placeholder: "jack212@gmail.com" , required: true, value: params[:email]%>
+        <%= form.label :email, style: "display: block"  %>
+      </div>
+
+      <div class="form-floating mb-4 submit">
+        <%= form.password_field :password, class: "form-control submit" , placeholder: "password", id: "show_hide_password", required: true, value: params[:password] %>
+        <%= form.label "Password", style: "display: block" %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.submit "Sign In" ,class: "btn btn-primary"%>
+      </div>
+    <% end %>
+
+    <label class="SignUp">
+      Don't have an account....!
+      <%=  link_to "Sign Up", sign_up_path %>
+    </label>
+
+  </div>
+  <div class="col-md-4"></div>
+</div>
+
+
+</body>
+</html>

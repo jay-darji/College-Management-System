@@ -1,0 +1,21 @@
+<link rel="stylesheet" href="/app/assets/stylesheets/users/form.css">
+<h1 class="title">
+
+  <% if @current_user.email != "admin@gmail.com" %>
+    Hey <%= @current_user.firstName %>..!
+    <h2> Your college details: </h2>
+  <% else %>
+    This is <%= @academicInfo.user.firstName %>
+    <h2> college details: </h2>
+  <%end %>
+
+
+
+</h1>
+
+
+<%= render "studentCollegeInfo", academicInfo: @academicInfo %>
+
+
+<%#= render "newV1", academicInfo: @academicInfo %>
+
